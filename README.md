@@ -13,7 +13,7 @@
 &emsp;&emsp;这里我以yolov7为例子向大家展示如何得到onnx以及运行onnx进行部署(bubbliiiing博主v4>>v5>>v5-6.1同理)
 
 ## Step1:
-git clone https://github.com/bubbliiiing/yolov7-pytorch.git\
+git clone https://github.com/bubbliiiing/yolov7-pytorch.git
 cd yolov7-pytorch\
 pip install -r requirements.txt\
 vim predict.py
@@ -44,7 +44,8 @@ line300 ----line316:
         return [out0, out1, out2]
 ```
 如下图为bubbliiiing博主源码生成的onnx输入输出信息截取
-![img.png](img.png)
+![image](https://user-images.githubusercontent.com/59249258/202062401-2d119b52-c7ac-4956-b333-2fde7b5b205e.png)
+
 
 &emsp;&emsp;bubbliiiing 这里的return[out0, out1, out2] 在经过"export_onnx"后并没有torch.cat，我们需要将输出的结果进行torch.cat操作，
 在进行torch.cat操作之前需要将输出结果进行转换一下维度，详见如下代码：
@@ -78,7 +79,8 @@ line300 ----line316:
         return output
 ```
 &emsp;&emsp;**使用上述的代码部分替代源代码的line300 至 line316:** 更换后得到的信息下图所示\
-![img_1.png](img_1.png)
+![image](https://user-images.githubusercontent.com/59249258/202062358-0f725441-1633-46da-996d-15d689f04a67.png)
+
 
 &emsp;&emsp;大家在更换自己的数据集进行训练得到的权重进行pth2onnx时需要注意：上述代码注释部分的更换85（coco数据集的类别数+5），
 在这里需要更换为自己的数据集的类别数再加上5。例如自己的数据集是10个类别(nc=10)，那么这里的no=10+5 ;也就是85需要更改为15（no = nc + 5）
