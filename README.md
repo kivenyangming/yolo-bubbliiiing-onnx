@@ -2,8 +2,8 @@
 
 &emsp;&emsp;首先感谢bubbliiiing博主提供的训练代码！
 整个部署程序分为四步（C++）：
-1. 下载bubbliiiing博主项目更改predict 为 export_onnx\
-2. 更改文件夹nets下的yolo.py代码\
+1. 下载bubbliiiing博主项目更改predict 为 export_onnx
+2. 更改文件夹nets下的yolo.py代码
 3. 生成onnx文件
 4. 下载此项目进行cmake&make
 经测试，可以对(pytorch版本的)yolov4 -- yolov5 -- yolov5-6.1 yolov7 进行转换测试
